@@ -3,7 +3,16 @@
   :url "http://example.com/FIXME"
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
-  :dependencies [[org.clojure/clojure "1.8.0"]]
+  :dependencies [[org.clojure/clojure "1.8.0"]
+                 [proto-repl "0.3.1"]
+                 [pjstadig/humane-test-output "0.9.0"]]
   :main ^:skip-aot numbers.core
   :target-path "target/%s"
-  :profiles {:uberjar {:aot :all}})
+  :profiles {:uberjar {:aot :all}
+             :dev {
+                   :plugins [[com.jakemccrary/lein-test-refresh "0.24.1"]]
+                   :injections [(require 'pjstadig.humane-test-output)
+                                (pjstadig.humane-test-output/activate!)]
+                   :test-refresh {:notify-command ["terminal-notifier" "-title" "Tests" "-message"]
+                                     :quiet true
+                                     :changes-only true}}})
