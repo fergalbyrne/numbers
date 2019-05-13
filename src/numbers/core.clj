@@ -12,15 +12,13 @@
 (defn say [n]
   (or (revnums n)
       (cond
-        (< n 1)   (str n " is not a natural number")
-        (< n 20)  (str (say (- n 10)) "teen")
-        (< n 100) (let [tens (quot n 10) ones (mod n 10)]
-                    (str (or (revnums (* 10 tens))
-                             (str (say tens) "ty"))
-                         (if (zero? ones) ""
-                             (str "-" (say ones)))))
-        (< n 1000) (str (say (quot n 100))
-                        " hundred"
-                        (if (zero? (mod n 100)) ""
-                             (str " and " (say (mod n 100)))))
+        (< n 1)    (str n " is not a natural number")
+        (< n 20)   (str (say (- n 10)) "teen")
+        (< n 100)  (let [tens (quot n 10) ones (mod n 10)]
+                     (str (or (revnums (* 10 tens))
+                              (str (say tens) "ty"))
+                          (when (pos? ones) (str "-" (say ones)))))
+        (< n 1000) (str (say (quot n 100)) " hundred"
+                        (when (pos? (mod n 100))
+                          (str " and " (say (mod n 100)))))
         :else "no idea")))
