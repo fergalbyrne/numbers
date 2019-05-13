@@ -35,4 +35,8 @@
 
 (deftest regression-test
   (testing "Names for key ranges of numbers"
-    (is (= (mapv say (range 0 20)) (computed [0 20])))))
+    (are [x y] (= x y)
+         (computed [0 20])     (mapv say (range 0 20)) 
+         (computed [50 72])    (mapv say (range 50 72))
+         (computed [97 115])   (mapv say (range 97 115))
+         (computed [998 1002]) (mapv say (range 998 1002)))))
