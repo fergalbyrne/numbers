@@ -1,6 +1,8 @@
 (ns numbers.core-test
   (:require [clojure.test :refer :all]
-            [numbers.core :refer :all]))
+            [numbers.core :refer :all]
+            [clojure.spec.test.alpha :as stest]
+            [clojure.spec.gen.alpha :as gen]))
 
 ;(mapv say (range 97 115))
 
@@ -33,10 +35,14 @@
 
 (map check-nums (keys computed))
 
+(deftest spec-test
+  (testing "say conforms to its spec"
+    (is (= nil (-> (stest/check `say) first :failure)))))
+
 (deftest regression-test
   (testing "Names for key ranges of numbers"
     (are [x y] (= x y)
-         (computed [0 20])     (mapv say (range 0 20)) 
+         (computed [0 20])     (mapv say (range 0 20))
          (computed [50 72])    (mapv say (range 50 72))
          (computed [97 115])   (mapv say (range 97 115))
          (computed [998 1002]) (mapv say (range 998 1002)))))
