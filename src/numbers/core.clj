@@ -47,4 +47,5 @@
     (empty? args) (println "please provide a number between 1 and 1000")
     :else (try (let [n (Integer/parseInt (first args))]
                  (println (say n)))
-            (catch Exception e (println "Error: " e)))))
+            (catch NumberFormatException e
+              (println (str "Error: non-integer input '" (first args) "'"))))))
