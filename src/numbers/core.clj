@@ -1,7 +1,8 @@
 (ns numbers.core
   ^{:doc "Numbers in English"
     :author "Fergal Byrne"}
-  (:require [clojure.spec.alpha :as s]))
+  (:require [clojure.spec.alpha :as s])
+  (:gen-class))
 
 (s/def ::nameable-num (s/and int? #(< 0 % 1001)))
 
@@ -38,3 +39,12 @@
                         (when (pos? (mod n 100))
                           (str " and " (say (mod n 100)))))
         :else (str n " is over 1000"))))
+
+(defn -main
+  "Read out a number in English"
+  [& args]
+  (cond
+    (empty? args) (println "please provide a number between 1 and 1000")
+    :else (try (let [n (Integer/parseInt (first args))]
+                 (println (say n)))
+            (catch Exception e (println "Error: " e)))))

@@ -11,7 +11,24 @@ Spec
   ret: (and string? num-word?)
 ```
 
+## Installation
+
+Clone this repo, and use [Leiningen](https://leiningen.org/) to build the JAR files:
+
+```
+    $ lein uberjar
+    $ chmod +x ./numbers.sh
+```
+
 ## Usage
+
+### Standalone
+
+```
+    $ ./numbers.sh 666
+```
+
+### Within clojure REPL
 
 ```Clojure
 (require '[numbers.core :as n])
