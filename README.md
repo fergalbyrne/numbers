@@ -32,4 +32,6 @@ Unit testing this function *per se* was not really feasible, so only a regressio
 
 For completeness, a `spec` for the function's input and return values was included, with a `test.check` generative test. `::nameable-num` checks that the argument is between 1 and 1000 inclusive. `num-word?` checks that the return value contains at least one of the names in `nums`. This test can be checked for by changing types of a key in `nums`.
 
-Development used [humane-test-output](https://github.com/pjstadig/humane-test-output) and [lein-test-refresh](https://github.com/jakemcc/lein-test-refresh). Illustrative config for these is included in `project.clj` rather than in `~/.lein/profiles.clj`.
+Development used Atom with [proto-repl](https://atom.io/packages/proto-repl), [humane-test-output](https://github.com/pjstadig/humane-test-output) and [lein-test-refresh](https://github.com/jakemcc/lein-test-refresh). Illustrative config for these is included in `project.clj` rather than in `~/.lein/profiles.clj`.
+
+To rerun tests on every saved code change, run `lein test-refresh`. Note that [terminal-notifier](https://github.com/julienXX/terminal-notifier) is being used with the current `project.clj`.

@@ -1,4 +1,6 @@
 (ns numbers.core
+  ^{:doc "Numbers in English"
+    :author "Fergal Byrne"}
   (:require [clojure.spec.alpha :as s]))
 
 (s/def ::nameable-num (s/and int? #(< 0 % 1001)))
