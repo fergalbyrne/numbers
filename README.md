@@ -1,36 +1,28 @@
-# numbers
+# numbers.core/say
 
-FIXME: description
-
-## Installation
-
-Download from http://example.com/FIXME.
+```Clojure
+numbers.core/say
+([n])
+  returns the number `n` ∈ [1,1000] in English words
+Spec
+  args: (cat :n :numbers.core/nameable-num)
+  ret: (and string? num-word?)
+```
+Clojure code to "read out" numbers between 1 and 1000 inclusive.
 
 ## Usage
 
-FIXME: explanation
+```Clojure
+(require '[numbers.core :as n])
 
-    $ java -jar numbers-0.1.0-standalone.jar [args]
+(say 666) ; => "six hundred and sixty-six"
 
-## Options
+```
 
-FIXME: listing of options this app accepts.
+## Notes
 
-## Examples
+The `nums` map contains a (near) minimal set of names that are needed to construct all the numbers. These include the digits, and then the non-standard numbers above that. All other numbers can be constructed by adding "teen" or "ty" to a digit name (and then appending the ones if appropriate), and by counting the hundreds.
 
-...
+Unit testing this function *per se* is not really feasible, so only a regression test against previously computed values over key ranges is present.
 
-### Bugs
-
-...
-
-### Any Other Sections
-### That You Think
-### Might be Useful
-
-## License
-
-Copyright © 2019 FIXME
-
-Distributed under the Eclipse Public License either version 1.0 or (at
-your option) any later version.
+For completeness, a `spec` for the function's input and return values was added, with a `test.check` generative test. `::nameable-num` checks that the argument is between 1 and 1000 inclusive. `num-word?` checks that the return value contains at least one of the names in `nums`.
