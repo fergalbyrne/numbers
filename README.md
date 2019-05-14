@@ -16,7 +16,7 @@ Spec
 ```Clojure
 (require '[numbers.core :as n])
 
-(say 666) ; => "six hundred and sixty-six"
+(n/say 666) ; => "six hundred and sixty-six"
 
 ```
 
