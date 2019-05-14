@@ -13,7 +13,7 @@
 (def ^:private names (zipmap (vals nums) (keys nums)))
 
 (defn num-word?
-  "valid numbers contain at least one of the words in nums"
+  "valid numbers contain at least one of the words in names"
   [n]
   (re-find (re-pattern (clojure.string/join "|" (keys nums))) n))
 
@@ -35,4 +35,4 @@
         (< n 1000) (str (say (quot n 100)) " hundred"
                         (when (pos? (mod n 100))
                           (str " and " (say (mod n 100)))))
-        :else "no idea")))
+        :else (str n " is over 1000"))))

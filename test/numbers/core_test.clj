@@ -4,8 +4,6 @@
             [clojure.spec.test.alpha :as stest]
             [clojure.spec.gen.alpha :as gen]))
 
-;(mapv say (range 97 115))
-
 (def computed
   {[0 20]
    ["0 is not a natural number"
@@ -28,12 +26,7 @@
     "one hundred and thirteen" "one hundred and fourteen"]
    [998 1002]
    ["nine hundred and ninety-eight" "nine hundred and ninety-nine"
-    "one thousand" "no idea"]})
-
-(defn check-nums [[n m]]
-  (= (computed [n m]) (mapv say (range n m))))
-
-(map check-nums (keys computed))
+    "one thousand" "1001 is over 1000"]})
 
 (deftest spec-test
   (testing "say conforms to its spec"
