@@ -43,9 +43,9 @@
 (defn -main
   "Read out a number in English"
   [& args]
-  (cond
-    (empty? args) (println "please provide a number between 1 and 1000")
-    :else (try (let [n (Integer/parseInt (first args))]
-                 (println (say n)))
-            (catch NumberFormatException e
-              (println (str "Error: non-integer input '" (first args) "'"))))))
+  (if (empty? args)
+    (println "please provide a number between 1 and 1000")
+    (try (let [n (Integer/parseInt (first args))]
+           (println (say n)))
+      (catch NumberFormatException e
+        (println (str "Error: non-integer input '" (first args) "'"))))))
